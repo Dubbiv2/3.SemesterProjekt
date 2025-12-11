@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="/static/styles.css">
+<title>Tilføj patient</title>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/patients">Patienter</a>
+    <a href="/add_patient" class="active">Tilføj patient</a>
+    <a href="/logout" class="logout">Log ud</a>
+</div>
+
+<div class="content">
+    <h2>Tilføj ny patient</h2>
+
+    <form method="POST" class="form-box">
+        <input type="text" name="navn" placeholder="Navn" required>
+        <input type="number" name="alder" placeholder="Alder" required>
+        <input type="text" name="cpr" placeholder="CPR" required>
+        <input type="text" name="diagnose" placeholder="Diagnose" required>
+        <button type="submit">Gem patient</button>
+    </form>
+</div>
+
+</body>
+</html>
