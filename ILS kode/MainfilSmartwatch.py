@@ -5,13 +5,13 @@ from machine import Pin, PWM, UART
 from time import sleep, ticks_ms, ticks_diff, time
 import MPU6050
 
-WIFI_NAVN = "SkoleProjekt"
-WIFI_KODE = "InternetSkoleprojekt1234!"
+WIFI_NAVN = "Navn på nettet"
+WIFI_KODE = "Kode til nettet"
 
 solenoide_ip = "172.19.101.61"
 solenoide_port = 5005
 
-hjemmeside = "http://www.a-gift-from-heaven.dk/api/update"
+hjemmeside = "www.url.tld/api/update"
 patient = 196 #Test
 
 led_pin = 26
