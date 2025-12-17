@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Patient</title>
+</head>
+<body>
+
+<a href="/patientdatabase">← Tilbage</a>
+
+<h2>{{ patient.navn }}</h2>
+<p>Alder: {{ patient.alder }}</p>
+<p>CPR: {{ patient.cpr }}</p>
+<p>Diagnose: {{ patient.diagnose }}</p>
+
+<h3>Seneste sensor-data</h3>
+
+<table border="1" cellpadding="8">
+<tr>
+    <th>Tidspunkt</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
+    <th>Årsag</th>
+    <th>Dørstatus</th>
+    <th>Solenoid forbindelse</th>
+</tr>
+
+{% for d in sensor_data %}
+<tr>
+    <td>{{ d.created_at.strftime('%Y-%m-%d %H:%M:%S') if d.created_at else '' }}</td>
+    <td>{{ d.gps_lat }}</td>
+    <td>{{ d.gps_lon }}</td>
+    <td>{{ d.årsag }}</td>
+    <td>{{ d.door_state if d.door_state else '' }}</td>
+    <td>{{ "OK" if d.solenoid else "FEJL" }}</td>
+</tr>
+{% endfor %}
+</table>
+
+</body>
+</html>

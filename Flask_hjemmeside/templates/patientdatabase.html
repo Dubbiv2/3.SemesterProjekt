@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>Patientdatabase</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f5f5f5;
+        }
+        h1 { margin-bottom: 20px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            text-align: left;
+        }
+        th { background-color: #eee; }
+        a.button {
+            padding: 6px 10px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        a.button:hover { background-color: #0056b3; }
+        button.delete {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button.delete:hover { background-color: #b52a37; }
+        .top-bar { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+<h1>Patientdatabase</h1>
+
+<div class="top-bar">
+    {% if session.role == "admin" %}
+        <a class="button" href="{{ url_for('ny_patient') }}">➕ Opret ny patient</a>
+        <a class="button" href="{{ url_for('download_patient_yaml') }}">⬇ Download YAML</a>
+    {% endif %}
+    <a class="button" href="{{ url_for('index') }}">⬅ Tilbage</a>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Navn</th>
+            <th>Alder</th>
+            <th>CPR</th>
+            <th>Diagnose</th>
+            <th>Handlinger</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for patient in patients %}
+        <tr>
+            <td>{{ patient.navn }}</td>
+            <td>{{ patient.alder }}</td>
+            <td>{{ patient.cpr }}</td>
+            <td>{{ patient.diagnose }}</td>
+            <td>
+                <a class="button" href="{{ url_for('patient_detail', patient_id=patient.id) }}">Se data</a>
+                {% if session.role == "admin" %}
+                <form method="post" action="{{ url_for('slet_patient', patient_id=patient.id) }}" style="display:inline;" onsubmit="return confirm('Er du sikker på at du vil slette denne patient?');">
+                    <button class="delete" type="submit">Slet</button>
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
