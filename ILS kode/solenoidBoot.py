@@ -3,8 +3,8 @@ from machine import Pin
 from time import sleep
 import ujson
 
-wifi_navn = "SkoleProjekt"
-wifi_kode = "InternetSkoleprojekt1234!"
+wifi_navn = "Navn på Nettet"
+wifi_kode = "Kode til nettet"
 
 solenoid = Pin(18, Pin.OUT)
 solenoid.value(0)
